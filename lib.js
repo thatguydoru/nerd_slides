@@ -23,9 +23,7 @@ class NerdSlideshow extends HTMLElement {
                 <slot><span>Add some slides nerd.</span></slot>
             </div>
         `;
-        this.currentSlide = Number(this.getAttribute("start")) ?? 1;
-        this.slide();
-
+        this.slideTo(Number(this.getAttribute("start")) ?? 1)
         this.slideListener = this.handleKeyInput.bind(this);
         document.addEventListener("keydown", this.slideListener);
     }
@@ -41,8 +39,7 @@ class NerdSlideshow extends HTMLElement {
 
         switch (name) {
             case "start":
-                this.currentSlide = newValue;
-                this.slide();
+                this.slideTo(newValue)
                 break;
 
             case "width": case "height":
@@ -83,6 +80,11 @@ class NerdSlideshow extends HTMLElement {
             "slide",
             { detail: this.currentSlide }
         ));
+    }
+
+    slideTo(slide) {
+        this.currentSlide = slide;
+        this.slide();
     }
 }
 
