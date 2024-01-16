@@ -23,7 +23,7 @@ class NerdSlideshow extends HTMLElement {
                 <slot><span>Add some slides nerd.</span></slot>
             </div>
         `;
-        this.slideTo(Number(this.getAttribute("start")) ?? 1)
+        this.slideTo(Number(this.getAttribute("start")) ?? 1);
         this.slideListener = this.handleKeyInput.bind(this);
         document.addEventListener("keydown", this.slideListener);
     }
