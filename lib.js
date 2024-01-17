@@ -23,7 +23,9 @@ class NerdSlideshow extends HTMLElement {
                 <slot><span>Add some slides nerd.</span></slot>
             </div>
         `;
-        this.slideTo(Number(this.getAttribute("start")) ?? 1);
+
+        const start = this.getAttribute("start");
+        this.slideTo(start ? Number(start) : 1);
         this.slideListener = this.handleKeyInput.bind(this);
         document.addEventListener("keydown", this.slideListener);
     }
@@ -32,14 +34,14 @@ class NerdSlideshow extends HTMLElement {
         document.removeEventListener("keydown", this.slideListener);
     }
 
-    attributeChangedCallback(name, _oldValue, newValue) {
+    attributeChangedCallback(name, oldValue, newValue) {
         if (!this.shadowRoot) {
             return;
         }
 
         switch (name) {
             case "start":
-                this.slideTo(newValue)
+                this.slideTo(newValue ? Number(newValue) : oldValue);
                 break;
 
             case "width": case "height":
