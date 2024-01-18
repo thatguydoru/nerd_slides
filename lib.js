@@ -97,26 +97,32 @@ class NerdSlide extends HTMLElement {
 
     connectedCallback() {
         let shadow = this.attachShadow({ mode: "open" });
+        const slot = this.hasAttribute("title")
+            ? `<slot></slot>`
+            : `
+                <slot name="header"></slot>
+                <slot name="body">
+                    <span style="color: red;">Add some content, nerd</span>
+                </slot>
+                <slot name="footer"></slot>
+            `;
+        const flow = this.getAttribute("flow") ?? "column";
         shadow.innerHTML = `
             <style>
                 article {
                     width: 100%;
                     height: 100%;
                     display: flex;
-                    flex-flow: column wrap;
-                    gap: 20px;
+                    flex-flow: ${flow} wrap;
+                    gap: 32px;
                     justify-content: center;
                     align-items: center;
+                    background: inherit;
+                    overflow: clip;
                 }
             </style>
 
-            <article>
-                <slot name="header"></slot>
-                <slot name="body">
-                    <span >Add some content nerd.</span>
-                </slot>
-                <slot name="footer"></slot>
-            </article>
+            <article>${slot}</article>
         `;
     }
 }
