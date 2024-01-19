@@ -1,0 +1,73 @@
+/*
+ * Colors are from the catppuccin theme: https://github.com/catppuccin/catppuccin
+ * */
+
+body {
+    margin: 0;
+}
+
+nerd-slide {
+    background: #1e1e2e;
+    color: #cdd6f4;
+}
+
+nerd-slide[title] {
+    font-size: 32px;
+    color: #cba6f7;
+}
+
+nerd-slide>[slot="header"] {
+    font-size: 42px;
+    color: #cba6f7;
+}
+
+nerd-slide>[slot="body"] {
+    font-size: 24px;
+
+    p {
+        text-align: center;
+    }
+}
+
+a {
+    color: #89b4fa;
+}
+
+a:visited {
+    color: #b4befe;
+}
+
+s {
+    opacity: 0.5;
+}
+
+.code {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background: #313244;
+    border-radius: 20px;
+    width: fit-content;
+    height: fit-content;
+    padding: 12px;
+    color: #a6adc8;
+}
+
+.code-group {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.gapped {
+    display: flex;
+    gap: 20px;
+    flex-flow: column wrap;
+    align-items: center;
+}
+
+/*
+:not(:defined) {
+    display: none;
+}
+*/

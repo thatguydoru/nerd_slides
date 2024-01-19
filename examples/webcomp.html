@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>RTFM: Web Components</title>
+    <script src="../lib.js" defer></script>
+    <link rel="stylesheet" href="static/cat.css">
+</head>
+
+<body>
+    <nerd-slideshow width="100vw" height="100vh">
+        <nerd-slide title>
+            <h1>RTFM: Web Components</h1>
+        </nerd-slide>
+
+        <nerd-slide flow="row">
+            <h1 slot="header">Motivation</h1>
+            <div slot="body">
+                <p><i>Several reasons:</i></p>
+                <ul>
+                    <li>Curiosity.</li>
+                    <li>Awareness.</li>
+                    <li>Yet another tool for your toolbox.</li>
+                </ul>
+            </div>
+        </nerd-slide>
+
+        <nerd-slide flow="column">
+            <h1 slot="header">What?</h1>
+            <div slot="body">
+                <p>It's a component system, native in your browser.</p>
+                <ul>
+                    <li><i>2011:</i> First introduced by Alex Russel in Fronteers Conf.</li>
+                    <li><i>2013:</i> Working Draft for custom elements and the shadow DOM API. Custom Elements v0</li>
+                    <li><i>2016:</i> Custom elements v1</li>
+                </ul>
+            </div>
+            <span slot="footer">
+                Crutchley, C. December 21, 2021. Web Components 101: History. CoderPad.
+                <a href="https://coderpad.io/blog/development/web-components-101-history/">
+                    https://coderpad.io/blog/development/web-components-101-history/
+                </a>
+            </span>
+        </nerd-slide>
+
+        <nerd-slide flow="column">
+            <h1 slot="header">Concepts</h1>
+            <ol slot="body" class="gapped">
+                <li>Custom elements</li>
+                <li>Shadow DOM</li>
+                <li>
+                    <code>&lt;template&gt;</code> and <code>&lt;slot&gt;</code>
+                </li>
+            </ol>
+        </nerd-slide>
+
+        <nerd-slide>
+            <h1 slot="header">Custom Elements</h1>
+            <div slot="body" class="gapped">
+                <p>
+                    HTML elements you define yourself using Javascript.
+                    These inherits from the base HTMLElement class or any built-in elements.
+                </p>
+                <div class="code-group">
+                    <div class="code">
+                        <span><i>js</i></span>
+                        <pre><code>class YourMom extends HTMLElement {
+    static observedAttributes = [];
+
+    constructor() {
+        super(); // Very important to call this first
+    }
+
+    // Lifecyle callbacks
+    connectedCallback() {}
+    disconnectedCallback() {}
+    attributeChangedCallback(name, oldValue, newValue) {}
+
+    // Other functionalities afterwards
+}
+
+customElements.define("your-mom", YourMom);</code></pre>
+                    </div>
+                    <div class="code">
+                        <span><i>html</i></span>
+                        <pre><code>&lt;your-mom&gt;&lt;/your-mom&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </nerd-slide>
+
+        <nerd-slide>
+            <h1 slot="header">Shadow <s>realm</s> DOM</h1>
+            <div slot="body" class="gapped">
+                <p>Encapsulation of the style, markup, and behavior.</p>
+                <div class="code">
+                    <pre><code>let shadow = this.attachShadow({ mode: "closed" })</code></pre>
+                    <i>or</i>
+                    <pre><code>let shadow = this.attachShadow({ mode: "open" })</code></pre>
+                </div>
+            </div>
+        </nerd-slide>
+
+        <nerd-slide>
+            <h1 slot="header">
+                <code>&lt;template&gt;</code> and <code>&lt;slot&gt;</code>
+            </h1>
+            <p slot="body">Different to Vue's...</p>
+        </nerd-slide>
+
+        <nerd-slide>
+            <h1 slot="header">Why tho?</h1>
+            <ul slot="body">
+                <li>Only dependency is the platform - the browser</li>
+                <li>Framework agnostic</li>
+                <li>Supported virtually forever</li>
+            </ul>
+        </nerd-slide>
+
+        <nerd-slide>
+            <h1 slot="header">Why not?</h1>
+            <ul slot="body">
+                <li>Verbose</li>
+                <li>FOUC, you</li>
+                <li>ARIA doko...</li>
+            </ul>
+        </nerd-slide>
+    </nerd-slideshow>
+</body>
+
+</html>
