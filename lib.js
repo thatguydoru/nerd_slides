@@ -100,13 +100,19 @@ class NerdSlide extends HTMLElement {
         const slot = this.hasAttribute("title")
             ? `<slot></slot>`
             : `
-                <slot name="header"></slot>
+                <header>
+                    <slot name="header"></slot>
+                </header>
                 <slot name="body">
                     <span style="color: red;">Add some content, nerd</span>
                 </slot>
-                <slot name="footer"></slot>
+                <footer>
+                    <slot name="footer"></slot>
+                </footer>
             `;
         const flow = this.getAttribute("flow") ?? "column";
+        const gap = flow == "row" ? "32px" : "0";
+
         shadow.innerHTML = `
             <style>
                 article {
@@ -114,11 +120,15 @@ class NerdSlide extends HTMLElement {
                     height: 100%;
                     display: flex;
                     flex-flow: ${flow} wrap;
-                    gap: 32px;
+                    gap: ${gap};
                     justify-content: center;
                     align-items: center;
                     background: inherit;
                     overflow: clip;
+                }
+
+                footer {
+                    font-style: italic;
                 }
             </style>
 
